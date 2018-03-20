@@ -27,6 +27,7 @@
 
 ;;;;;; define other configratuions below this comment ;;;;
 (column-number-mode t)
+(tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (setq backup-directory-alist `(("." . "~/.saves")))
 

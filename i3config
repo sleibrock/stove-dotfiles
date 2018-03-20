@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -127,7 +127,7 @@ bindsym XF86MonBrightnessUp   exec "xbacklight + 5"
 bindsym XF86Tools             exec "manjaro-settings-manager"
 bindsym XF86Display           exec "echo"
 bindsym XF86WLAN              exec "wifi toggle"
-bindsym XF86Search            exec "echo"
+bindsym XF86Search            exec "scrot"
 bindsym XF86LaunchA           exec "echo"
 # you should always have an emacs bind
 bindsym XF86Explorer          exec "emacs"
