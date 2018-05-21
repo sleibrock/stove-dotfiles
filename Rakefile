@@ -34,26 +34,20 @@ end
 
 # Copy all files from their locations to the Git project
 task :update do
-  FILES.each_pair do |pair|
-    copyfile pair[1], pair[0]
-  end
+  FILES.each_pair {|pair| copyfile pair[1], pair[0] }
 end
 
 
 # Copy all files from the Git repo to their target dirs
 task :deploy do
-  FILES.each_pair do |pair|
-    copyfile pair[0], pair[1]
-  end
+  FILES.each_pair {|pair| copyfile pair[0], pair[1]}
   run_posts
 end
 
 
 # Clear all files from the project (probably shouldn't use this)
 task :clear do
-  FILES.each_pair do |pair|
-    `rm #{pair[0]}`
-  end
+  FILES.each_pair {|pair| `rm #{pair[0]}` }
 end
 
 # end
