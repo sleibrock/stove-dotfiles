@@ -16,15 +16,21 @@ plugins=(
   git
 )
 
+
+alias HELP="echo -e 'Steven\'s Help Command\n
+
+Here's a brief rundown of what you can do'"
+
 # Source the local ZSH programs
 source $ZSH/oh-my-zsh.sh
 
 
 # add any directories with binaries for development purposes
-export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
-export PATH=$PATH:$HOME/.cargo/bin
-export GOPATH=$HOME/go
+export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin   # ruby
+export PATH=$PATH:$HOME/.cargo/bin            # rust
+export GOPATH=$HOME/go                        # golang
 
+# google cloud related stuff
 export GCLOUD=$HOME/.gcloud
 source $GCLOUD/completion.zsh.inc
 source $GCLOUD/path.zsh.inc
@@ -37,8 +43,29 @@ export FACTORIOPATH=$HOME/.factorio
 export FACTORIOMODS=$FACTORIOPATH/mods
 
 # try to set primary displays
-xrandr --output HDMI-A-1 --primary # desktop
+#xrandr --output HDMI-A-1 --primary # desktop
 xrandr --output eDP1 --primary     # thinkpad display
+
+
+alias work_monitor="xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 1600x900 --pos 1440x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --mode 1440x900 --pos 0x0 --rotate normal --output DP2 --off"
+alias tv_output="xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --mode 1920x1080 --pos 1600x0 --rotate normal --output DP2 --off"
+
+alias replaygain_dir="mp3gain -r -s a *.mp3"
+alias update_mirrors="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
+
+
+
+# Append more aliases and descriptions here as needed
+alias halpmeh="echo \"HALPMEH Glyph activated\";
+echo \"\";
+echo \"Your personal commands:\";
+echo \"SCREEN_ALWAYS_ON   - screen will never dim/fade\";
+echo \"work_monitor       - turn on a secondary display\";
+echo \"tv_output          - turn on secondary display (1080p)\";
+echo \"replaygain_dir     - apply RG to an entire dir of MP3\";
+echo \"update_mirrors     - update your pacman mirros\";
+"
+
 
 
 # actual bash functions go here
@@ -49,6 +76,7 @@ wine32(){
 }
 
 # display temperatures in an infinite loop
+# deprecated? requires third party "sensors" bin
 temps(){
     while :;
     do
