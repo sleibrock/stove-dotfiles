@@ -1,12 +1,11 @@
 # steven's zshrc file
 # contains aliases, memes, jokes, poorly-made hacks
 
-# turn off dpms
+# turn off dpms so screen never dims/turns off
 xset s off -dpms
 
 export ZSH=/home/steve/.oh-my-zsh
 
-export MUSICDIR=/home/steve/Music
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -17,26 +16,32 @@ plugins=(
 )
 
 
-alias HELP="echo -e 'Steven\'s Help Command\n
-
-Here's a brief rundown of what you can do'"
-
 # Source the local ZSH programs
 source $ZSH/oh-my-zsh.sh
 
 
 # add any directories with binaries for development purposes
+# If ruby version changes, update that path
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin   # ruby
 export PATH=$PATH:$HOME/.cargo/bin            # rust
 export GOPATH=$HOME/go                        # golang
+export PATH=$PATH:$HOME/.opam/4.06.1/bin      # ocaml/opam
 
-# google cloud related stuff
-export GCLOUD=$HOME/.gcloud
-source $GCLOUD/completion.zsh.inc
-source $GCLOUD/path.zsh.inc
+# OPAM environment ZSH hook
+test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+
+# google cloud related stuff (disable for the time being)
+#export GCLOUD=$HOME/.gcloud
+#source $GCLOUD/completion.zsh.inc
+#source $GCLOUD/path.zsh.inc
 
 # my personal gcloud dev appserver alias
 alias dev_appserver="python2 $GCLOUD/bin/dev_appserver.py"
+
+# My personal music directory
+export MUSICDIR=/home/steve/Music
+
 
 # Factorio related stuff
 export FACTORIOPATH=$HOME/.factorio
@@ -50,9 +55,11 @@ xrandr --output eDP1 --primary     # thinkpad display
 alias work_monitor="xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 1600x900 --pos 1440x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --mode 1440x900 --pos 0x0 --rotate normal --output DP2 --off"
 alias tv_output="xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 1600x900 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --mode 1920x1080 --pos 1600x0 --rotate normal --output DP2 --off"
 
+# Music replaygain tagging in current directory
 alias replaygain_dir="mp3gain -r -s a *.mp3"
-alias update_mirrors="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
 
+# Update pacman mirrors when they start acting slow
+alias update_mirrors="sudo pacman-mirrors --fasttrack && sudo pacman -Syyu"
 
 
 # Append more aliases and descriptions here as needed

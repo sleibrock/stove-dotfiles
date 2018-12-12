@@ -4,19 +4,32 @@
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/") t)
 
-(setq packages '(markdown-mode
-		 scribble-mode
-		 evil-visual-mark-mode
-		 evil-search-highlight-persist
-		 neotree
-		 smartparens
-		 spacemacs-theme
-		 smex
-		 ido-vertical-mode
-		 go-mode
-		 rust-mode
-		 racket-mode
-		 rainbow-delimiters))
+
+; define initial packages to install for a regular Emacs program
+; 
+(setq packages
+      '(
+	; editor related
+	evil-visual-mark-mode
+	evil-search-highlight-persist
+	neotree
+	smartparens
+	spacemacs-theme
+	smex 
+	ido-vertical-mode
+	rainbow-delimiters
+	
+	; languages
+	markdown-mode
+	scribble-mode
+	haskell-mode
+	go-mode
+	rust-mode
+	racket-mode
+	tuareg     ; ocaml
+	ocp-indent ; ocaml indentation plugin
+	nim-mode
+	))
 
 
 (defun install-all-packages ()
@@ -51,6 +64,8 @@
 (add-hook 'prog-mode-hook #'hl-line-mode)
 (add-hook 'prog-mode-hook #'smartparens-mode)
 
+; any other lang specific requires
+(require 'ocp-indent)
 
 
 (custom-set-variables
@@ -65,13 +80,13 @@
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(package-selected-packages
    (quote
-    (haskell-mode ocp-indent tuareg nim-mode evil-search-highlight-persist evil-visual-mark-mode scribble-mode rainbow-delimiters racket-mode rust-mode go-mode ido-vertical-mode smex spacemacs-theme smartparens neotree markdown-mode))))
+    (nim-mode ocp-indent tuareg haskell-mode evil-search-highlight-persist evil-visual-mark-mode scribble-mode rainbow-delimiters racket-mode rust-mode go-mode ido-vertical-mode smex spacemacs-theme smartparens neotree markdown-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "TerminessTTF Nerd Font" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 98 :width normal)))))
 
 
 ; end

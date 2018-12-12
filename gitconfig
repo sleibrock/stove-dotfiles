@@ -1,8 +1,5 @@
 [user]
 	name = Steven Leibrock
 	email = steven.leibrock@gmail.com
-	signingkey = F846D00AB4318965
 [push]
 	default = simple
-[commit]
-	gpgsign = true
